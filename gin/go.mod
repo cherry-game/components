@@ -3,7 +3,7 @@ module github.com/cherry-game/components/gin
 go 1.18
 
 require (
-	github.com/cherry-game/cherry v1.3.21
+	github.com/cherry-game/cherry v1.4.0
 	github.com/gin-gonic/gin v1.9.1
 )
 

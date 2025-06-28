@@ -3,7 +3,7 @@ module github.com/cherry-game/components/etcd
 go 1.18
 
 require (
-	github.com/cherry-game/cherry v1.3.21
+	github.com/cherry-game/cherry v1.4.0
 	github.com/json-iterator/go v1.1.12
 	go.etcd.io/etcd/api/v3 v3.5.9
 	go.etcd.io/etcd/client/v3 v3.5.9

@@ -12,6 +12,10 @@ cd etcd
 go mod tidy
 cd ..
 
+cd gin
+go mod tidy
+cd ..
+
 cd gops
 go mod tidy
 cd ..
