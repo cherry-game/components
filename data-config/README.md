@@ -10,20 +10,20 @@
 
 ### Using go get
 ```
-go get github.com/cherry-game/cherry/components/data-config@latest
+go get github.com/cherry-game/components/data-config@latest
 ```
 
 
 ## Quick Start
 ```
-import cherryDataConfig "github.com/cherry-game/cherry/components/data-config"
+import cherryDataConfig "github.com/cherry-game/components/data-config"
 ```
 
 ```
 package demo
 import (
 	"github.com/cherry-game/cherry"
-	cherryDataConfig "github.com/cherry-game/cherry/components/data-config"
+	cherryDataConfig "github.com/cherry-game/components/data-config"
 )
 
 // RegisterComponent 注册struct到data-config

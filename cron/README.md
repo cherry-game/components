@@ -9,13 +9,13 @@
 
 ### Using go get
 ```
-go get github.com/cherry-game/cherry/components/cron@latest
+go get github.com/cherry-game/components/cron@latest
 ```
 
 
 ## Quick Start
 ```
-import cherryCron "github.com/cherry-game/cherry/components/cron"
+import cherryCron "github.com/cherry-game/components/cron"
 ```
 
 

@@ -1,4 +1,4 @@
-module github.com/cherry-game/cherry/components/mongo
+module github.com/cherry-game/components/mongo
 
 go 1.18
 

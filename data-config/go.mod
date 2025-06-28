@@ -1,4 +1,4 @@
-module github.com/cherry-game/cherry/components/data-config
+module github.com/cherry-game/components/data-config
 
 go 1.18
 

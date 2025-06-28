@@ -1,4 +1,4 @@
-module github.com/cherry-game/cherry/components/gops
+module github.com/cherry-game/components/gops
 
 go 1.18
 

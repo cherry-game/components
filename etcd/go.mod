@@ -1,4 +1,4 @@
-module github.com/cherry-game/cherry/components/etcd
+module github.com/cherry-game/components/etcd
 
 go 1.18
 

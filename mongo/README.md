@@ -8,13 +8,13 @@
 
 ### Using go get
 ```
-go get github.com/cherry-game/cherry/components/mongo@latest
+go get github.com/cherry-game/components/mongo@latest
 ```
 
 
 ## Quick Start
 ```
-import cherryMongo "github.com/cherry-game/cherry/components/mongo"
+import cherryMongo "github.com/cherry-game/components/mongo"
 ```
 
 ## example

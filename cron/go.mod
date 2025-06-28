@@ -1,4 +1,4 @@
-module github.com/cherry-game/cherry/components/cron
+module github.com/cherry-game/components/cron
 
 go 1.18
 
