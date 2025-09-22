@@ -94,15 +94,15 @@ func CreateDatabase(uri, dbName string, timeout ...time.Duration) (*mongo.Databa
 		tt = timeout[0]
 	}
 
-	o := options.Client().ApplyURI(uri)
-	if err := o.Validate(); err != nil {
+	opts := options.Client().ApplyURI(uri)
+	if err := opts.Validate(); err != nil {
 		return nil, err
 	}
 
 	ctx, cancel := context.WithTimeout(context.Background(), tt)
 	defer cancel()
 
-	client, err := mongo.Connect(o)
+	client, err := mongo.Connect(opts)
 	if err != nil {
 		return nil, err
 	}
@@ -112,9 +112,18 @@ func CreateDatabase(uri, dbName string, timeout ...time.Duration) (*mongo.Databa
 		return nil, err
 	}
 
-	clog.Infof("ping db [uri = %s] is ok", uri)
+	mgodb := client.Database(dbName)
 
-	return client.Database(dbName), nil
+	// ping mongo db
+	err = mgodb.Client().Ping(context.TODO(), nil)
+	if err != nil {
+		clog.Warnf("Ping DB is error. [dbName = %s, host = %v, err = %v]", dbName, opts.Hosts, err)
+		return nil, err
+	}
+
+	clog.Infof("Ping DB is ok. [dbName = %s, host = %v] ", dbName, opts.Hosts)
+
+	return mgodb, nil
 }
 
 func (s *Component) GetDb(id string) *mongo.Database {
