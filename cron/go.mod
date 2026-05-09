@@ -1,9 +1,11 @@
 module github.com/cherry-game/components/cron
 
-go 1.18
+go 1.24.0
+
+toolchain go1.24.2
 
 require (
-	github.com/cherry-game/cherry v1.4.0
+	github.com/cherry-game/cherry v1.5.0
 	github.com/robfig/cron/v3 v3.0.1
 )
 
@@ -14,6 +16,6 @@ require (
 	github.com/modern-go/reflect2 v1.0.2 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
 	go.uber.org/multierr v1.10.0 // indirect
-	go.uber.org/zap v1.26.0 // indirect
-	google.golang.org/protobuf v1.31.0 // indirect
+	go.uber.org/zap v1.27.0 // indirect
+	google.golang.org/protobuf v1.33.0 // indirect
 )
