@@ -67,8 +67,6 @@ func (n *Component) Mode() string {
 // Load 初始化组件：加载配置 → 构建 etcd 客户端 → 启动 runLoop。
 // etcd 客户端仅在此时构建一次，后续断线重连复用同一连接。
 func (p *Component) Init() {
-	p.ComponentDefault.InitFields()
-
 	clusterConfig := cprofile.GetConfig("cluster").GetConfig(p.Mode())
 	if clusterConfig.LastError() != nil {
 		clog.Fatalf("etcd config not found. err = %v", clusterConfig.LastError())
