@@ -7,7 +7,7 @@ import (
 	cerr "github.com/cherry-game/cherry/error"
 	clog "github.com/cherry-game/cherry/logger"
 	cprofile "github.com/cherry-game/cherry/profile"
-	"github.com/go-redis/redis/v8"
+	"github.com/redis/go-redis/v9"
 )
 
 type (
@@ -38,7 +38,7 @@ func (r *SourceRedis) Name() string {
 }
 
 func (r *SourceRedis) Init(_ IDataConfig) {
-	//read data_config->file node
+	// read data_config->file node
 	dataConfig := cprofile.GetConfig("data_config").GetConfig(r.Name())
 	if dataConfig.Unmarshal(&r.redisConfig) != nil {
 		clog.Warnf("[data_config]->[%s] node in `%s` file not found.", r.Name(), cprofile.Name())
@@ -81,7 +81,10 @@ func (r *SourceRedis) newSubscribe() {
 		select {
 		case <-r.close:
 			return
-		case ch := <-sub.Channel():
+		case ch, ok := <-sub.Channel():
+			if !ok {
+				return
+			}
 			if ch.Payload == "" {
 				continue
 			}
@@ -106,6 +109,10 @@ func (r *SourceRedis) ReadBytes(configName string) ([]byte, error) {
 		return nil, cerr.Error("configName is empty.")
 	}
 
+	if r.rdb == nil {
+		return nil, cerr.Error("redis client is not initialized.")
+	}
+
 	key := fmt.Sprintf("%s:%s", r.PrefixKey, configName)
 
 	return r.rdb.Get(context.Background(), key).Bytes()
@@ -117,8 +124,9 @@ func (r *SourceRedis) OnChange(fn ConfigChangeFn) {
 
 func (r *SourceRedis) Stop() {
 	clog.Infof("close redis client [address = %s]", r.Address)
-	r.close <- true
-
+	if r.close != nil {
+		close(r.close)
+	}
 	if r.rdb != nil {
 		err := r.rdb.Close()
 		if err != nil {

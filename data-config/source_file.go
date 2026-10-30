@@ -106,7 +106,7 @@ func (f *SourceFile) newWatcher() {
 
 					data, err := f.ReadBytes(configName)
 					if err != nil {
-						clog.Warn("Read data fail. [name = %s, err = %s]", configName, err)
+						clog.Warnf("Read data fail. [name = %s, err = %s]", configName, err)
 						continue
 					}
 
